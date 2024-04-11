@@ -1,1 +1,238 @@
 // Your styles go here
+@import "bootstrap";
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+$main-color: rgb(200, 0, 127);
+$accent-gray: rgb(142, 142, 142);
+
+.body{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.h1-section-format{
+    color: $main-color;
+    text-align: center;
+}
+.flex-format{
+    display: flex; 
+    justify-content: space-between;
+}
+// NAV
+.navbar-brand{
+    color: $main-color;
+}
+.nav-link{
+    color: $main-color;
+}
+.jumbotron{
+    padding: 2em .5em;
+    background-image: linear-gradient(45deg,
+        $main-color 7.5%,
+        white 7.5% 30%,
+        $main-color 30%,
+        white
+);
+    h1{
+        font-weight: bold;
+    }
+}
+.button-jumbotron{
+    text-align: center;
+}
+
+// FEATURES
+#features{
+    margin-top: 2em;
+    h1{
+        color: $main-color;
+        text-align: center;
+    }
+    p{
+        width: 100%;
+    }
+    .cardholder{
+        .card{
+            .btn-primary{
+                background-color: $main-color;
+                color: white;
+                border: 1px solid $main-color;
+            }
+            padding: 0;
+            width: calc((100% - 10%) / 3)
+        }
+    }
+}
+
+// PLANS
+#plans{
+    margin-top: 3em;
+    h1{
+        @extend .h1-section-format;
+    }
+    p{
+        font-size: 1.2em;
+        color: $accent-gray;
+    }
+    table{
+        width: 100%;
+        .table-group-divider{
+            color: $main-color;
+        }
+        th{
+            text-align:center;
+            color: black;
+        }
+        .special-cell{
+            background-color: $main-color;
+            color: white;
+        }
+        .feature{
+            width: 40%;
+            text-align:left;
+        }
+        td{
+            width: calc((100% - 40%) / 3);
+            text-align: center;
+            color: black;
+            border-bottom: 1px solid $accent-gray;
+            padding: .3em 0;
+        }
+    }
+}
+
+// PRICING
+#pricing{
+    margin-top: 3em;
+    h1{
+        @extend .h1-section-format;
+    }
+    p{
+        text-align: center;
+    }
+    .row{
+        @extend .flex-format;
+        margin-top: 1.75em;
+    }
+}
+
+
+@mixin pricingCard($color1, $color2, $color3, $color4){
+    border: 1px solid $color1;
+    padding: 0;
+    width: calc((100% - 10%) / 3);
+    .card-header{
+        background-color: $color2;
+        margin: 0;
+        color: $color3;
+    }
+    .card-body{
+        padding: 1em;
+    }
+    .card-title{
+        font-size: 1.4em;
+    }
+    .perMonth{
+        font-size: 1em;
+        color: $accent-gray;
+    }
+    .btn-primary{
+        background-color: $color2;
+        width: 100%;
+        border: 1px solid $color1;
+        color: $color4;
+    }
+    .card-footer{
+        padding: .5em;
+    }
+}
+.enterprise-price{
+    @include pricingCard($main-color, $main-color, white, white)
+}
+.pro-price{
+    @include pricingCard($accent-gray, $accent-gray, white, white)
+}
+.free-price{
+    @include pricingCard($main-color, white, black, $main-color)
+}
+
+//GALLERY
+#gallery{
+    margin-top: 3em;
+    h1{
+        @extend .h1-section-format;
+    }
+    grid-template-rows: auto;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr 3fr 2fr 1fr 1fr 2fr;
+    grid-template-areas:
+    "box1 box1 box2 box2 box3 box4 box4 box5"
+    "box6 box7 box2 box2 box8 box8 box8 box8"
+    "box6 box7 box9 box9 box8 box8 box8 box8"
+    "box10 box10 box9 box9 box11 box11 box12 box12"
+    "box13 box13 box13 box14 box14 box14 box14 box14";
+    gap: 10px;
+}
+@for $i from 1 through 14{
+    .space#{$i}{
+        grid-area: box#{$i};
+        width: 100%;
+        height: 100%;
+    }
+}
+
+//PROJECTS
+#projects{
+    margin-top: 3em;
+    h1{
+        @extend .h1-section-format;
+    }
+    p{
+        text-align: center;
+    }
+    .project-cards{
+        @extend .flex-format;
+        .card{
+            width: calc((100% - 4%)/2);
+            padding: 0;
+            .card-text{
+                text-align: left;
+            }
+        }
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+//FOOTER
+footer{
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 5em;
+    h2{
+        color: $main-color;
+        text-align: center;
+        font-size: 4em;
+    }
+    p{
+        color: $accent-gray;
+        text-align: center;
+    }
+    h3{
+        color: white;
+    }
+    ul{
+        padding: 0;
+        li{
+            list-style-type: none;
+            a{
+                text-decoration: none;
+                color: $accent-gray;  
+            }
+            a:hover{
+                border-bottom: 1px solid $accent-gray;
+            }
+        }
+    }
+}
